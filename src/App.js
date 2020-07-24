@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import axios from 'axios'
-import Header from './Header'
-import Main from './Main'
+import Header from './Components/Header'
+import Main from './Components/Main'
 import 'semantic-ui-css/semantic.min.css'
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
     .catch(() => {
       console.log("Failure to launch")
     })
-  }, [])
+  }, [date])
   
   return (
     <div className="App">
