@@ -1,29 +1,40 @@
 import React, { useState, useEffect } from "react";
+import "./App.css";
 import axios from 'axios'
-import Nav from './components/Nav'
-import Main from './components/Main'
-import Row from './components/Row'
+import Header from './Header'
+import Main from './Main'
+import 'semantic-ui-css/semantic.min.css'
 
 function App() {
-  const [currentPhoto, setCurrentPhoto] = useState('')
+  const [photo, setPhoto] = useState([])
+  const [date, setDate] = useState("2020-05-24")
+
+
 
   useEffect(() => {
-    axios.get('https://api.nasa.gov/planetary/apod?api_key=vCGPz8NwvDSv1kXgnzs8mCpRewnbdWt4IXhuy7A3')
-      .then(res => {
-        console.log(res.data)
-        setCurrentPhoto(res.data)
-      })
-      .catch(err => {
-        console.log(err)
-      })
+    axios.get(`https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=${date}`)
+    .then( res => {
+      console.log("works")
+      setPhoto(res.data)
+    })
+    .catch(() => {
+      console.log("Failure to launch")
+    })
   }, [])
-
+  
   return (
     <div className="App">
-      <Nav />
-      <Main current={currentPhoto.url} explanation={currentPhoto.explanation} />
-      <Row />
+      <div>
+      <Header/>
+      
+      <Main
+        photo = {photo}
+      />
+      </div>
+      
+      
     </div>
+
   );
 }
 

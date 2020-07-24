@@ -1,30 +1,46 @@
-import React from 'react'
+import React from "react"
+import styled from 'styled-components'
 
-function Photo(props) {
-    console.log(props)
-    const { image, explanation } = props
-
-    const defaultPic = 'https://picsum.photos/id/237/200/300'
-
-    if (!image) {
-        return (
-            <div className="photo-container">
-                <img src={defaultPic} alt="#" />
-                <div className="text-container">
-                    <p>ipsum dolor sit amet, consectetur adipisicing elit met repellendus</p>
-                </div>
-            </div>
-        )
+const StyledPhoto = styled.div`
+    background-color: white;
+    width: 70%;
+    margin: 0 auto;
+    border-radius: 10px;
+    .img-container {
+        width: 70%;
+        border-radius: 10px;
+        padding: 2%;
+        border: 5px solid #C83D39;
+        margin: 20px auto;  
     }
+  .apod-img{
+    border-radius: 10px;
+    margin: 2%;
+  }
+`
+
+const Photo = props => {
+
+    const { photo } = props
 
     return (
-        <div className="photo-container">
-            <img className="sub-image" src={image} alt="#" />
-            <div className="text-container">
-                <p className="p-subPhoto">{explanation.substring(0, 150) + "..."}</p>
-            </div>
+    <StyledPhoto>
+        <h2>{photo.title}</h2>
+        <div>
+        <div className = 'img-container'>
+        <img
+            alt = {photo.title}
+            src = {photo.url}
+            className = "apod-img"
+        />
         </div>
+        
+        </div>
+        <p>{photo.explanation}</p>
+    </StyledPhoto>
+    
     )
 }
+
 
 export default Photo
